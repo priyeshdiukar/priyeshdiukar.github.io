@@ -1,1 +1,237 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+<title></title>
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<style>
+    /*  
+    Thanks to: Usama Tahir
+    https://medium.com/@AmJustSam
+    */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    /* CSS which you need for blurred box */
+    body {
+        /* background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: top;
+            background-image: url('jacob-chen-42740-unsplash.jpg'); */
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, Helvetica;
+        letter-spacing: 0.02em;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .blurred-box {
+        position: fixed;
+        width: 250px;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -25%);
+        background: inherit;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .blurred-box:after {
+        content: '';
+        width: 300px;
+        background: inherit;
+        position: absolute;
+        left: -25px;
+        right: 0;
+        top: -25px;
+        bottom: 0;
+        box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
+        filter: blur(10px);
+    }
+
+
+    /* Form which you dont need */
+    .user-login-box {
+        position: relative;
+        margin-top: 25px;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .user-login-box>* {
+        display: inline-block;
+        width: 200px;
+    }
+
+    .user-icon {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        border-radius: 50%;
+        background-size: cover;
+        background-image: url('./Priyesh.jpeg');
+    }
+
+    .user-name {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    .feather-container{
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        color: white;
+        justify-content: space-evenly;
+    }
+</style>
+
+<body>
+    <div class="blurred-box">
+        <div class="user-login-box">
+            <span class="user-icon"></span>
+            <div class="user-name">Hi. I am Priyesh...</div>
+            <div class="feather-container">
+                <a href="https://github.com/priyeshdiukar"><i data-feather="github"></i></a>
+                <a href="https://www.facebook.com/priyesh.diukar"><i data-feather="facebook"></i></a>
+                <a href="https://www.instagram.com/priyesh.dkr"><i data-feather="instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div id="particles-js"></div>
+
+
+
+
+    <script>
+        feather.replace()
+    </script>
+    <script>
+        particlesJS("particles-js",
+            {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        },
+                        "image": {
+                            "src": "img/github.svg",
+                            "width": 100,
+                            "height": 100
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.1,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.1,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": false,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": false,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+    </script>
+</body>
+
+</html>

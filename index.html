@@ -13,10 +13,6 @@
         padding: 0;
         box-sizing: border-box;
     }
-    #particles-js{
-        width:100vw;
-        height: 100vh;
-     }
 
     /* CSS which you need for blurred box */
     body {
@@ -245,6 +241,17 @@
                 },
                 "retina_detect": true
             });
+
+        (function () {
+            var canvas = document.getElementsByClassName('particles-js-canvas-el')[0],
+                context = canvas.getContext('2d');
+            window.addEventListener('resize', resizeCanvas, false);
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+        })();
     </script>
 </body>
 

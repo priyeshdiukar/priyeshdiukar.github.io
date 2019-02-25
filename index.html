@@ -1,268 +1,529 @@
 <!DOCTYPE html>
-<html lang="en">
-<title></title>
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Introduction to JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
 <style>
-    /*  
-    Thanks to: Usama Tahir
-    https://medium.com/@AmJustSam
-    */
-    * {
+    body {
         margin: 0;
         padding: 0;
+        font-size: 16px;
+        overflow-x: hidden;
+    }
+
+    * {
         box-sizing: border-box;
     }
 
-    /* CSS which you need for blurred box */
-    body {
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        background-image: url('./background.jpg');
-        background-color: #000;
-        width: 100%;
-        height: 100%;
-        font-family: Arial, Helvetica;
-        letter-spacing: 0.02em;
-        font-weight: 400;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    .blurred-box {
+    .sticky {
         position: fixed;
-        width: 250px;
-        top: 25%;
-        left: 50%;
-        transform: translate(-50%, -25%);
-        background: inherit;
-        border-radius: 2px;
-        overflow: hidden;
+        top: 50px;
+        right: 50px;
+        padding: 50px;
+        font-size: 20px;
     }
 
-    .blurred-box:after {
-        content: '';
-        width: 300px;
-        background: inherit;
-        position: absolute;
-        left: -25px;
-        right: 0;
-        top: -25px;
-        bottom: 0;
-        box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
-        filter: blur(10px);
+    .card {
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-
-    /* Form which you dont need */
-    .user-login-box {
-        position: relative;
-        margin-top: 25px;
-        text-align: center;
-        z-index: 1;
-    }
-
-    .user-login-box>* {
+    code {
         display: inline-block;
-        width: 200px;
-    }
-
-    .user-icon {
-        width: 100px;
-        height: 100px;
-        position: relative;
-        border-radius: 50%;
-        background-size: cover;
-        background-image: url('./priyesh.jpeg');
-    }
-
-    .user-name {
-        margin-top: 15px;
-        margin-bottom: 15px;
-        color: white;
-    }
-
-    .feather-container {
-        padding: 10px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        color: white;
-        justify-content: space-evenly;
-    }
-
-    .topics {
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        background-color: #eee;
+        border-radius: 3px;
+        font-family: courier, monospace;
+        padding: 5px;
     }
 </style>
 
-<body>
-    <div class="topics">
-        <h1>Topics</h1>
-        <a href="./IntroductionToJS.html">Introduction to JS</a>
+<body id="intro">
+    <img style="width: 100vw; height: 100vh;" src="./JS.png" alt="">
+    <div class="sticky card">
+        <h3>Topics</h3>
+        <ul>
+            <li><a href="#primitives-href">Primitives​</a></li>
+            <li><a href="#variables-href">Variables​</a></li>
+            <li><a href="#objects-href">Objects</a></li>
+            <li><a href="#primitives-vs-objects-href">Primitives vs Objects​</a></li>
+            <li><a href="#array-href">Array​</a></li>
+            <li><a href="#functions-href">Functions​</a></li>
+            <li><a href="#this-href">this</a>​</li>
+            <li><a href="#dynamic-typing-href">Dynamic Typing</a></li>
+            <li><a href="#prototype-patterns-href">Prototype Patterns</a>​</li>
+            <li><a href="#functional-patterns">Functional Patterns​</a></li>
+        </ul>
     </div>
-    <div class="blurred-box">
-        <div class="user-login-box">
-            <span class="user-icon"></span>
-            <div class="user-name">Hi. I am Priyesh...</div>
-            <div class="feather-container">
-                <a href="https://github.com/priyeshdiukar"><i data-feather="github"></i></a>
-                <a href="https://www.linkedin.com/in/priyeshdiukar"><i data-feather="linkedin"></i></a>
-                <a href="https://stackoverflow.com/users/5809767/priyesh-diukar?tab=profile">
-                    <svg width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-                        <style>
-                            .st0 {
-                                fill: currentColor
+
+    <ul>
+        <li id="primitives-href">
+            <h1>Primitives</h1>
+            <p>Number, boolean, string, undefined and null are primitives.</p>
+            <ul>
+                <li>
+                    <h2>Number</h2>
+                    <pre>
+                        There is only one number type in JavaScript, the 64-bit binary oating
+                        point type. Decimal numbers’ arithmetic is inexact.
+        
+                        As you may already know, 0.1 + 0.2 does not make 0.3 . But with
+                        integers, the arithmetic is exact, so 1+2 === 3 .
+        
+                        Numbers inherit methods from the Number.prototype object. Methods
+                        can be called on numbers:
+                        <code>
+                            (123).toString(); //"123"
+                            (1.23).toFixed(1); //"1.2"
+                        </code>
+
+                        There are functions for converting strings to numbers:
+                        <code>Number.parseInt()</code> , <code>Number.parseFloat()</code> and <code>Number()</code>:
+
+                        <code>
+                            Number.parseInt("1") //1
+                            Number.parseInt("text") //NaN
+                            Number.parseFloat("1.234") //1.234
+                            Number("1") //1
+                            Number("1.234") //1.234
+                        </code>
+
+                        Invalid arithmetic operations or invalid conversions will not throw an
+                        exception, but will result in the NaN “Not-a-Number” value.
+                        <code>Number.isNaN()</code> can detect NaN.
+
+                        The + operator can add or concatenate.
+                        <code>
+                            1 + 1 //2
+                            "1" + "1" //"11"
+                            1 + "1" //"11"                        
+                        </code>
+                    </pre>
+                </li>
+                <li>
+                    <h2>String</h2>
+                    <pre>
+                        A string stores a series of Unicode characters. The text can be inside
+                        double quotes <code>""</code> or single quotes <code>''</code>.
+
+                        Strings inherit methods from String.prototype. They have methods
+                        like : <code>substring()</code> , <code>indexOf()</code> and <code>concat()</code>.
+
+                        <code>
+                            "text".substring(1,3) //"ex"
+                            "text".indexOf('x') //2
+                            "text".concat(" end") //"text end"
+                        </code>
+
+                        Strings, like all primitives, are immutable. For example concat()
+                        doesn’t modify the existing string but creates a new one.                        
+                    </pre>
+                </li>
+                <li>
+                    <h2>Boolean</h2>
+                    <pre>
+                        A boolean has two values : <code>true</code> and <code>false</code> .
+
+                        The language has truthy and falsy values.
+                        <code>false</code> , <code>null</code> , <code>undefined</code> , <code>''</code> (empty string), <code>0</code> and <code>NaN</code> are falsy.
+
+                        All other values, including all objects, are truthy.
+                        The truthy value is evaluated to <code>true</code> when executed in a boolean
+                        context. Falsy value is evaluated to <code>false</code>. 
+
+                        <code>
+                            let text = '';
+                            if(text) {
+                                console.log("This is true");
+                            } else {
+                                console.log("This is false");
+                            }                                
+                        </code>
+                </li>
+            </ul>
+        </li>
+        <li id="variables-href">
+            <h2>Variables</h2>
+            <pre>
+                Variables can be created using <code>var</code>, <code>let</code> and <code>const</code>.
+                <code>var</code> declares and optionally initializes a variable. Variables declared
+                with var have a function scope. They are treated as declared at the
+                top of the function. This is called <a href="https://www.w3schools.com/js/js_hoisting.asp">variable hoisting</a>.
+                The <code>let</code> declaration has a block scope.
+
+                The value of a variable that is not initialize is <code>undefined</code>.
+                A variable declared with <code>const</code> cannot be reassigned. Its value,
+                however, can still be mutable. <code>const</code> freezes the variable,
+                <code>Object.freeze()</code> freezes the object. The const declaration has a
+                block scope.
+            </pre>
+                </li>
+                <li id="objects-href">
+                    <h2>Objects</h2>
+                    <pre>
+                An object is a dynamic collection of properties.
+
+                The property key is a unique string. When a non string is used as the
+                property key, it will be converted to a string. The property value can be
+                a primitive, object, or function.
+
+                The simplest way to create an object is to use an object literal:
+                <code>
+                    let obj = {
+                        message : "A message",
+                        doSomething : function() {}
+                    } 
+                </code>
+
+                There are two ways to access properties: dot notation and bracket
+                notation. We can read, add, edit and remove an object’s properties at
+                any time.
+                <ul>
+                    <li>get: <code>object.name</code> , <code>object[expression]</code></li>
+                    <li>set: <code>object.name</code> = value, <code>object[expression]</code> = value</li>
+                    <li>delete: delete <code>object.name</code> , <code>delete object[expression]</code></li>
+                </ul>
+                <code>
+                    let obj = {}; //create empty object
+                    obj.message = "A message"; //add property
+                    obj.message = "A new message"; //edit property
+                    delete obj.message; //delete property                        
+                </code>
+
+                Objects can be used as maps. A simple map can be created using
+                <code>Object.create(null)</code> :
+
+                <code>
+                    let fruits = Object.create(null);
+                    fruits["a"] = "apple";
+                    fruits["b"] = "banana";
+                    fruits["b"]; //"banana"
+                </code>
+
+                All object’s properties are public. Object.keys() can be used to iterate over all properties.
+                <code>
+                    function logProperty(name){
+                        console.log(name); //property name
+                        console.log(obj[name]); //property value
+                    }
+                    Object.keys(obj).forEach(logProperty);
+                </code>
+
+                <code>Object.assign()</code> copies all properties from one object to another. An
+                object can be cloned by copying all its properties to an empty object:
+
+                <code>
+                    let book = { title: "The good parts"};
+                    let clone = Object.assign({}, book);
+                </code>
+
+                An immutable object is an object that once created cannot be changed.
+                If you want to make the object immutable, use Object.freeze().
+            </pre>
+                </li>
+                <li id="primitives-vs-objects-href">
+                    <h2>Primitives vs Objects</h2>
+                    <pre>
+                        Primitives (except <code>null</code> and <code>undefined</code> ) are treated like objects, in
+                        the sense that they have methods but they are not objects.
+
+                        Numbers, strings, and booleans have object equivalent wrappers. These
+                        are the <code>Number</code> , <code>String</code> , and <code>Boolean</code> functions.
+
+                        In order to allow access to properties on primitives, JavaScript creates
+                        an wrapper object and then destroys it. The process of creating and
+                        destroying wrapper objects is optimized by the JavaScript engine.
+                        
+                        <em>Primitives are immutable, and objects are mutable.</em>
+                    </pre>
+                </li>
+
+                <li id="array-href">
+                    <h2>Array</h2>
+                    <pre>
+                        Arrays are indexed collections of values. Each value is an element.
+                        Elements are ordered and accessed by their index number.
+
+                        JavaScript has array-like objects. Arrays are implemented using objects.
+                        Indexes are converted to strings and used as names for retrieving
+                        values.
+
+                        A simple array like <code>let arr = ['A', 'B', 'C']</code> is emulated using an
+                        object like the one below:
+
+                        <code>
+                            {
+                                '0': 'A',
+                                '1': 'B',
+                                '2': 'C'
+                            }
+                        </code>
+
+                        Note that <code>arr[1]</code> gives the same value as <code>arr['1'] : arr[1] === arr['1']</code>.
+
+                        Removing values from the array with delete will leave holes.
+                        splice() can be used to avoid the problem, but it can be slow.
+
+                        <code>
+                            let arr = ['A', 'B', 'C'];
+                            delete arr[1];
+                            console.log(arr); // ['A', empty, 'C']
+                            console.log(arr.length); // 3
+                        </code>
+                    </pre>
+                </li>
+                <li id="functions-href">
+                    <h2>Functions</h2>
+                    <pre>
+                        Functions are independent units of behavior.
+                        Functions are objects. Functions can be assigned to variables, stored in
+                        objects or arrays, passed as an argument to other functions, and
+                        returned from functions.
+
+                        
+                        <ol>There are three ways to create a function:
+                            <li>Function Declaration (aka Function Statement)</li>
+                            <li>Function Expression (aka Function Literal)</li>
+                            <li>Arrow Function</li>
+                        </ol>
+
+                        <h3>The Function Declaration</h3>
+                        <ul>
+                            <li><code>function</code> is the first keyword on the line</li>
+                            <li>it must have a name</li>
+                            <li>it can be used before definition. Function declarations are moved, or “hoisted”, to the top of their scope.</li>
+                        </ul>
+                        <code>function doSomething(){}</code>
+                        
+                        <h3>The Function Expression</h3>
+                        <ul>
+                            <li><code>function</code> is not the first keyword on the line</li>
+                            <li>The name is optional. There can be an anonymous function expression or a named function expression.</li>
+                            <li>it needs to be created, then it can execute</li>
+                        </ul>             
+                        <code>let doSomething = function() {}</code>    
+
+                        <h3>Arrow Function</h3>
+                        The arrow function is a sugar syntax for creating an anonymous function expression.
+                        <code>let doSomething = () => {};</code>
+                        Arrow functions don’t have their own <code>this</code> and <code>arguments</code>.
+                        
+                        <h3>Function Invocation</h3>
+                        A function, created with the function keyword, can be invoked in different ways:
+                        <ul>
+                            <li>Function form
+                                <code>doSomething(arguments)</code>
+                            </li>
+                            <li>Method form
+                                <code>
+                                    theObject.doSomething(arguments)
+                                    theObject["doSomething"](arguments)                                        
+                                </code>
+                            </li>
+                            <li>Constructor form
+                                <code>new Constructor(arguments)</code>
+                            </li>
+                            <li>IIFE
+                                It can auto-execute after definition (called  <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">“IIFE” Immediately Invoked Function Expression)</a></li>
+                                <code>
+                                    (function ({
+                                        var aName = "Barry";
+                                    })();
+                                </code>
+                            </li>
+                        </ul>
+                    </pre>
+                </li>
+                <li id="this-href">
+                    <h2>This</h2>
+                    <pre>
+                        Methods are functions that are stored in objects. Functions are independent. 
+                        In order for a function to know on which object to work
+                        on <code>this</code> is used. 
+                        <code>This</code> represents the function’s context.
+
+                        There is no point to use <code>this</code> when a function is invoked with the
+                        function form: <code>doSomething()</code>. 
+                        In this case <code>this</code> is <code>undefined</code> or is
+                        the <code>window</code> object, depending if the strict mode is enabled or not.
+
+                        When a function is invoked with the method form
+                        theObject.doSomething() , this represents the object.
+
+                        When a function is used as a constructor new Constructor() , this
+                        represents the newly created object.
+
+                        The value of this can be set with apply() or call() :
+                        doSomething.apply(theObject) . In this case this is the object sent as
+                        the first parameter to the method.
+                        
+                        The value of this depends on how the function was invoked, not
+                        where the function was created. This is of course a source of confusion.
+                    </pre>
+                </li>
+                <li id="dynamic-typing-href">
+                    <h2>Dynamic Typing</h2>
+                    <pre>
+                        JavaScript has dynamic typing. Values have types, variables do not.
+                        Types can change at run time.
+
+                        <code>
+                            function log(value){
+                                    console.log(value);
+                            }
+                            log(1);
+                            log("text");
+                            log({message : "text"});   
+                        </code>
+
+                        The <code>typeof()</code> operator can check the type of a variable.
+                        
+                        <code>
+                            let n = 1;
+                            typeof(n); //number
+                            let s = "text";
+                            typeof(s); //string
+                            let fn = function() {};
+                            typeof(fn); //function
+                        </code>
+                    </pre>
+                </li>
+                <li id="prototype-patterns-href">
+                    <h2>Prototype Patterns</h2>
+                    <pre>
+                        <code>Object.create()</code> , constructor function, and class build objects over the prototype system.
+                
+                        <code>
+                            let servicePrototype = {
+                                doSomething : function() {}
+                            }
+                            let service = Object.create(servicePrototype);
+                            console.log(service.__proto__ === servicePrototype); //true
+                        </code>
+    
+                        <code>Object.create()</code> builds a new object <code>service</code> which has the <code>servicePrototype</code> object as its prototype.
+                        This means that <code>doSomething()</code> is available on the service object. 
+                        It also means that the <code>__proto__</code> property of <code>service</code> points to the <code>servicePrototype</code> object.
+
+
+
+                        Let’s now build a similar object using class.
+
+                        <code>
+                            class Service {
+                                doSomething(){}
+                            }
+                            let service = new Service();
+                            console.log(service.__proto__ === Service.prototype);
+                        </code>
+
+                        All methods created in the <code>Service</code> class will be added to the
+                        <code>Service.prototype</code> object.
+                        Instances of the <code>Service</code> class will have the same prototype ( <code>Service.prototype</code> ) object.
+                        All instances will delegate method calls to the <code>Service.prototype</code> object.
+                        Methods are created once on <code>Service.prototype</code> and then inherited by all instances.
+                    </pre>
+
+                    <h3>Prototype Chain</h3>
+                    <pre>
+                        Objects inherit from other objects. Each object has a prototype and
+                        inherits their properties from it. The prototype is available through the
+                        “hidden” property <code>__proto__</code>.
+
+                        When you request a property which the object does not contain,
+                        JavaScript will look down the prototype chain until it either nds the
+                        requested property, or until it reaches the end of the chain.
+                        <img style="width: 600px" src="./prototype-chain.jpg">
+                    </pre>
+                </li>
+                <li id="functional-patterns">
+                    <h2>Functional Patterns</h2>
+                    <pre>
+                        JavaScript has first class functions and closures. 
+                        These are concepts that open the way for Functional Programming in JavaScript. 
+                        As a result, higher order functions are possible.
+
+                        <code>filter()</code> , <code>map()</code> , <code>reduce()</code> are the basic toolbox for working with arrays in a function style.
+
+                        <code>filter()</code> selects values from a list based on a predicate function that decides what values should be kept.
+
+                        <code>map()</code> transforms a list of values to another list of values using a mapping function.
+                        
+                        <code>
+                            let numbers = [1,2,3,4,5,6];
+
+                            function isEven(number){
+                                return number % 2 === 0;
                             }
 
-                            .st1 {
-                                fill: currentColor
+                            function doubleNumber(x){
+                                return x*2;
                             }
-                        </style>
-                        <path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z" />
-                        <path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7 24.7 4.9-5.9-29.7-24.7-4.9 5.9zm19.2-18.3l-6.2 4.6 23 31 6.2-4.6-23-31zM38 86h38.6v-7.7H38V86z" />
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/priyesh.dkr"><i data-feather="instagram"></i></a>
-                <a href="https://www.facebook.com/priyesh.diukar"><i data-feather="facebook"></i></a>
-            </div>
-        </div>
-    </div>
-    <div id="particles-js"></div>
 
+                            let evenNumbers = numbers.filter(isEven);
+                            //2 4 6
 
+                            let doubleNumbers = numbers.map(doubleNumber);
+                            //2 4 6 8 10 12
+                        </code>
 
+                        <code>reduce()</code> reduces a list of values to one value.
 
-    <script>
-        feather.replace()
-    </script>
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    },
-                    "image": {
-                        "src": "img/github.svg",
-                        "width": 100,
-                        "height": 100
-                    }
-                },
-                "opacity": {
-                    "value": 0.1,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.1,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": false,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": false,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
+                        <img src="./map-reduce-sandwich.png">
 
-        (function () {
-            var canvas = document.getElementsByClassName('particles-js-canvas-el')[0],
-                context = canvas.getContext('2d');
-            window.addEventListener('resize', resizeCanvas, false);
+                        <code>
+                            function addNumber(total, value){
+                                return total + value;
+                            }
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resizeCanvas();
-        })();
-    </script>
+                            function sum(...args){
+                                return args.reduce(addNumber, 0);
+                            }
+                            sum(1,2,3); //6     
+                        </code>
+                    </pre>
+
+                    <h3>Closure</h3>
+                    <pre>
+                        Closure is an inner function that has access to the parent function’s
+                        variables, even after the parent function has executed.
+
+                        <code>
+                            function createCount(){
+                                let state = 0;
+                                    return function count(){
+                                    state += 1;
+                                    return state;
+                                }
+                            } 
+
+                            let count = createCount();
+                            console.log(count()); //1
+                            console.log(count()); //2
+                        </code>
+
+                        <code>count()</code> is a nested function. <code>count()</code> accesses the variable state from its parent. 
+                        It survives the invocation of the parent function createCount(). Count() is a closure.
+
+                        A higher order function is a function that takes another function as an
+                        input, returns a function, or does both.
+
+                        <code>filter()</code> , <code>map()</code> , <code>reduce()</code> are higher-order functions.
+
+                        A pure function is a function that returns a value based only of its input.
+
+                        Pure functions don’t use variables from the outer functions. Pure functions cause no mutations.
+                        In the previous examples <code>isEven()</code> , <code>doubleNumber()</code> , <code>addNumber()</code> and <code>sum()</code> are pure functions.
+                        </pre>
+                </li>
+            </ul>
+
 </body>
 
 </html>

@@ -59,6 +59,8 @@
             <li><a href="#dynamic-typing-href">Dynamic Typing</a></li>
             <li><a href="#prototype-patterns-href">Prototype Patterns</a>​</li>
             <li><a href="#functional-patterns">Functional Patterns​</a></li>
+            <li><a href="#destructuring-href">Array and Object destructuring</a></li>
+            <li><a href="#import-export-href">Import and Export</a></li>
         </ul>
     </div>
 
@@ -122,7 +124,25 @@
                         </code>
 
                         Strings, like all primitives, are immutable. For example concat()
-                        doesn’t modify the existing string but creates a new one.                        
+                        doesn’t modify the existing string but creates a new one.
+                    </pre>
+
+                    <h3>Template Literals (ES6)</h3>
+                    <pre>
+                        <code>
+                                var a = 5;
+                                var b = 10;
+                                console.log('Fifteen is ' + (a + b) + ' and\nnot ' + (2 * a + b) + '.');
+                                // "Fifteen is 15 and
+                                // not 20."
+
+                                //es6
+                                var a = 5;
+                                var b = 10;
+                                console.log(`Fifteen is ${a + b} and not ${2 * a + b}.`);
+                                // "Fifteen is 15 and
+                                // not 20."
+                        </code>
                     </pre>
                 </li>
                 <li>
@@ -297,7 +317,7 @@
                         <ul>
                             <li><code>function</code> is the first keyword on the line</li>
                             <li>it must have a name</li>
-                            <li>it can be used before denition. Function declarations are moved, or “hoisted”, to the top of their scope.</li>
+                            <li>it can be used before definition. Function declarations are moved, or “hoisted”, to the top of their scope.</li>
                         </ul>
                         <code>function doSomething(){}</code>
                         
@@ -306,11 +326,10 @@
                             <li><code>function</code> is not the first keyword on the line</li>
                             <li>The name is optional. There can be an anonymous function expression or a named function expression.</li>
                             <li>it needs to be created, then it can execute</li>
-                            <li>it can auto-execute after definition (called “IIFE” Immediately Invoked Function Expression)</li>
                         </ul>             
                         <code>let doSomething = function() {}</code>    
 
-                        <h3>Arrow Function</h3>
+                        <h3>Arrow Function (ES6)</h3>
                         The arrow function is a sugar syntax for creating an anonymous function expression.
                         <code>let doSomething = () => {};</code>
                         Arrow functions don’t have their own <code>this</code> and <code>arguments</code>.
@@ -329,6 +348,14 @@
                             </li>
                             <li>Constructor form
                                 <code>new Constructor(arguments)</code>
+                            </li>
+                            <li>IIFE
+                                It can auto-execute after definition (called  <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">“IIFE” Immediately Invoked Function Expression)</a></li>
+                                <code>
+                                    (function ({
+                                        var aName = "Barry";
+                                    })();
+                                </code>
                             </li>
                         </ul>
                     </pre>
@@ -514,6 +541,71 @@
                         Pure functions don’t use variables from the outer functions. Pure functions cause no mutations.
                         In the previous examples <code>isEven()</code> , <code>doubleNumber()</code> , <code>addNumber()</code> and <code>sum()</code> are pure functions.
                         </pre>
+                </li>
+                <li id="destructuring-href">
+                    <h2>Array and object destructing (ES6)</h2>
+                    <pre>
+                        Destruction makes the assignment of the values of an array or object to the new variable easier.
+
+                        <h3>Array Destructuring</h3>
+                        <code>
+                            var a, b, rest;
+                            [a, b] = [10, 20];
+                            
+                            console.log(a);
+                            // expected output: 10
+                            
+                            console.log(b);
+                            // expected output: 20
+                            
+                            [a, b, ...rest] = [10, 20, 30, 40, 50];
+                            
+                            console.log(rest);
+                            // expected output: [30,40,50]
+                        </code>
+
+                        <h3>Object Destructuring</h3>
+                        <code>
+                            var o = {p: 42, q: true};
+                            var {p, q} = o;
+                            
+                            console.log(p); // 42
+                            console.log(q); // true
+                        </code>
+                    </pre>
+                </li>
+
+                <li id="import-export-href">
+                    <h2>Import and export (ES6)</h2>
+
+                    <pre>
+                        Using import and export in your JavaScript application makes it more powerful. They allow you to create separate and reusable components.
+
+                        <code>
+                            //es6 detail.js
+
+                            export default function detail(name, age) {
+                                return `Hello ${name}, you are ${age} years old!`
+                            }
+
+
+
+                            import detail from './detailComponent';
+
+                            console.log(detail('Will', 20))
+                            // Hello Will,  you are 20 years old!
+                        </code>
+
+                        If we want to import more than one module, we just put them within curly brackets.
+
+                        <code>
+                            import {detail, userProfile, getPosts} from './detailComponent'
+
+                            console.log(detail('Will', 20))
+                            console.log(userProfile)
+                            console.log(getPosts)
+                        </code>
+                    </pre>
                 </li>
             </ul>
 
